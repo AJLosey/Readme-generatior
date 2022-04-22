@@ -1,1 +1,1 @@
-# Readme-generatior
+# Readme-generator
