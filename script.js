@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 var inquirer = require('inquirer');
-const Choices = require('inquirer/lib/objects/choices');
+
 inquirer
     .prompt([
         {
@@ -45,11 +45,6 @@ inquirer
             name: "githublink"
         },
         {
-            type: "input",
-            message: "What is your email?",
-            name: "email"
-        },
-        {
             type: "list",
             message: "what license is this under?",
             name: "license",
@@ -59,9 +54,39 @@ inquirer
     ])
     .then((answers) => {
 
-        title = answers.title;
-        descript = answers.descript;
-        c = answers.github;
+        let title = answers.title;
+        let descript = answers.descript;
+        let install = answers.install;
+        let usage = answers.usage;
+        let contributing = answers.contributing;
+        let tests = answers.tests;
+        let email = answers.email;
+        let github = answers.githublink;
+        var licenseText = ``
+        var licenseAbbr1 = ``
+        var licenseAbbr2 = ``
+        var licenseColor = ``
+        switch (answers.choices) {
+            case "MIT":
+                licenseText = "MIT license"
+                licenseAbbr1 = "MIT"
+                licenseAbbr2 = "MIT"
+                licenseColor = "yellow"
+                break;
+            case "Mozilla":
+                licenseText = "Mozilla license"
+                licenseAbbr1 = "MPL 2.0"
+                licenseAbbr2 = "MPL_2.0"
+                licenseColor = "brightgreen"
+                break;
+            case "ISC":
+                licenseText = "ISC license"
+                licenseAbbr1 = "ISC"
+                licenseAbbr2 = "ISC"
+                licenseColor = "blue"
+                break;
+
+        }
 
         let file = `## Title of Project
         [![License: ${AAA}](https://img.shields.io/badge/License-${AAA}-${color}.svg)](https://opensource.org/licenses/${AAA})
