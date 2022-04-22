@@ -1,66 +1,117 @@
 const fs = require('fs')
 
 var inquirer = require('inquirer');
+const Choices = require('inquirer/lib/objects/choices');
 inquirer
     .prompt([
         {
             type: "input",
-            message: "What is your name?",
-            name: "name"
+            message: "What is the title of your project?",
+            name: "title"
         },
         {
             type: "input",
-            message: "What is your linkedin?",
-            name: "linkedin"
+            message: `What is your description? Think about the "what", "why", and "how." `,
+            name: "descript"
         },
         {
             type: "input",
-            message: "What is your github",
-            name: "github"
+            message: "How do you install your project?",
+            name: "install"
         },
+        {
+            type: "input",
+            message: "How do you use your project?",
+            name: "usage"
+        },
+        {
+            type: "input",
+            message: "Who all contributed?",
+            name: "contributing"
+        },
+        {
+            type: "input",
+            message: "How do you uses any tests that might be provided?",
+            name: "tests"
+        },
+        {
+            type: "input",
+            message: "What is your email?",
+            name: "email"
+        },
+        {
+            type: "input",
+            message: "What is your github profile address?",
+            name: "githublink"
+        },
+        {
+            type: "input",
+            message: "What is your email?",
+            name: "email"
+        },
+        {
+            type: "list",
+            message: "what license is this under?",
+            name: "license",
+            choices: ["MIT", "Mozilla", "ISC"]
+        },
+
     ])
     .then((answers) => {
 
-        a = answers.name;
-        b = answers.linkedin;
+        title = answers.title;
+        descript = answers.descript;
         c = answers.github;
 
-        let file = `<!doctype html>
-<html lang="en">
+        let file = `## Title of Project
+        [![License: ${AAA}](https://img.shields.io/badge/License-${AAA}-${color}.svg)](https://opensource.org/licenses/${AAA})
+        
+        Description goes here
+        
+        ### Table of contents
+        
+        [Installation](#installation)
+        
+        [Usage](#usage)
+        
+        [License](#license)
+        
+        [Contributing](#contributing)
+        
+        [Tests](#tests)
+        
+        [Questions](#questions)
+        
+        ### Installation {#installation}
+        
+        installation text
+        
+        ### Usage {#usage}
+        
+        usage text
+        
+        ### License {#license}
+        
+        liscense text
+        
+        ### Contributing {#contributing}
+        
+        people who contributed
+        
+        ### Tests {#tests}
+        
+        tests?
+        
+        ### Questions? {#questions}
+        
+        Send questions to
+        
+        -email@email.com
+        
+        -[github-name](githublink)`
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <title>mini project</title>
-</head>
-
-<body>
-    <ul class="list-group" style="background-color: antiquewhite;">
-        <li class="list-group-item">${a}</li>
-        <li class="list-group-item">${b}</li>
-        <li class="list-group-item">${c}</li>
-    </ul>
-
-
-
-
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>`
-
-
-        fs.writeFile('index.html', file, err => {
+        fs.writeFile('README.md', file, err => {
             if (err) {
                 console.error(err)
                 return
