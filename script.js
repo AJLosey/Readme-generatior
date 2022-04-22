@@ -64,7 +64,7 @@ inquirer
         let github = answers.githublink;
         var licenseText = ``
         var licenseBadge = ``
-        switch (answers.choices) {
+        switch (answers.license) {
             case "MIT":
                 licenseText = "MIT license"
                 licenseBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
@@ -81,52 +81,56 @@ inquirer
                 break;
         }
 
-        let file = `## ${title}
-       ${licenseBadge}
+        console.log(`${title} + ${descript} + ${install} + ${usage} + ${contributing} + ${licenseBadge}`)
+
+        let file = `
+## ${title}
+
+${licenseBadge}
         
-        ${descript}
+${descript}
         
-        ### Table of contents
+### Table of contents
         
-        [Installation](#installation)
+[Installation](#installation)
         
-        [Usage](#usage)
+[Usage](#usage)
         
-        [License](#license)
+[License](#license)
         
-        [Contributing](#contributing)
+[Contributing](#contributing)
         
-        [Tests](#tests)
+[Tests](#tests)
         
-        [Questions](#questions)
+[Questions](#questions)
         
-        ### Installation {#installation}
+### Installation {#installation}
         
-        ${install}
+${install}
         
-        ### Usage {#usage}
+### Usage {#usage}
         
-        ${usage}
+${usage}
         
-        ### License {#license}
+### License {#license}
         
-        ${licenseText}
+${licenseText}
         
-        ### Contributing {#contributing}
+### Contributing {#contributing}
         
-        ${contributing}
+${contributing}
         
-        ### Tests {#tests}
+### Tests {#tests}
         
-        ${tests}
+${tests}
         
-        ### Questions? {#questions}
+### Questions? {#questions}
         
-        Send questions to
+Send questions to
         
-        -${email}
+-${email}
         
-        -[link to my github](${github})`
+-[link to my github](${github})`
 
 
         fs.writeFile('README.md', file, err => {
