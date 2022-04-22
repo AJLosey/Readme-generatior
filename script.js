@@ -67,7 +67,9 @@ inquirer
         switch (answers.license) {
             case "MIT":
                 licenseText = "MIT license"
-                licenseBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+                licenseBadge1 = "License: MIT"
+                licenseBadge2 = "https://img.shields.io/badge/License-MIT-yellow.svg"
+                licenseBadge3 = "https://opensource.org/licenses/MIT"
                 break;
             case "Mozilla":
                 licenseText = "Mozilla license"
@@ -81,12 +83,10 @@ inquirer
                 break;
         }
 
-        console.log(`${title} + ${descript} + ${install} + ${usage} + ${contributing} + ${licenseBadge}`)
-
         let file = `
-## ${title}
+# ${title}
 
-${licenseBadge}
+[![${licenseBadge1}][license-image]][license-url]
         
 ${descript}
         
@@ -130,7 +130,11 @@ Send questions to
         
 -${email}
         
--[link to my github](${github})`
+-[link to my github](${github})
+
+[license-image]: ${licenseBadge2}
+
+[license-url]: ${licenseBadge3}`
 
 
         fs.writeFile('README.md', file, err => {
