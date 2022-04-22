@@ -63,35 +63,28 @@ inquirer
         let email = answers.email;
         let github = answers.githublink;
         var licenseText = ``
-        var licenseAbbr1 = ``
-        var licenseAbbr2 = ``
-        var licenseColor = ``
+        var licenseBadge = ``
         switch (answers.choices) {
             case "MIT":
                 licenseText = "MIT license"
-                licenseAbbr1 = "MIT"
-                licenseAbbr2 = "MIT"
-                licenseColor = "yellow"
+                licenseBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
                 break;
             case "Mozilla":
                 licenseText = "Mozilla license"
-                licenseAbbr1 = "MPL 2.0"
-                licenseAbbr2 = "MPL_2.0"
-                licenseColor = "brightgreen"
+                licenseBadge = "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)"
                 break;
             case "ISC":
                 licenseText = "ISC license"
-                licenseAbbr1 = "ISC"
-                licenseAbbr2 = "ISC"
-                licenseColor = "blue"
+                licenseBadge = "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)"
                 break;
-
+            default:
+                break;
         }
 
-        let file = `## Title of Project
-        [![License: ${AAA}](https://img.shields.io/badge/License-${AAA}-${color}.svg)](https://opensource.org/licenses/${AAA})
+        let file = `## ${title}
+       ${licenseBadge}
         
-        Description goes here
+        ${descript}
         
         ### Table of contents
         
@@ -109,31 +102,31 @@ inquirer
         
         ### Installation {#installation}
         
-        installation text
+        ${install}
         
         ### Usage {#usage}
         
-        usage text
+        ${usage}
         
         ### License {#license}
         
-        liscense text
+        ${licenseText}
         
         ### Contributing {#contributing}
         
-        people who contributed
+        ${contributing}
         
         ### Tests {#tests}
         
-        tests?
+        ${tests}
         
         ### Questions? {#questions}
         
         Send questions to
         
-        -email@email.com
+        -${email}
         
-        -[github-name](githublink)`
+        -[link to my github](${github})`
 
 
         fs.writeFile('README.md', file, err => {
